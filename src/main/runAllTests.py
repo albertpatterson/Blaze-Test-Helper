@@ -3,8 +3,10 @@ import re
 from os import path
 import subprocess
 
+google3Location = '/Users/personal/code/python/scripts'
+
 parentFolderPaths = [
-    'src/test/testing'
+    '/Users/personal/code/python/scripts/src/test/testing'
 ]
 
 
@@ -43,13 +45,14 @@ def getKarmaTests(buildFilePath):
     return tests
 
 
-def runTest(path, name):
-    pass
+def reformatPath(path):
+    assert path.startswith(google3Location), "Invalid path"
+    return path.replace(google3Location, '/')
 
 
 def blazeTest(tests):
     cmd = ['blaze', 'test'] + ['%s:%s' %
-                               (test.path, test.name) for test in tests]
+                               (reformatPath(test.path), test.name) for test in tests]
 
     subprocess.run(' '.join(cmd), shell=True, check=True)
 
