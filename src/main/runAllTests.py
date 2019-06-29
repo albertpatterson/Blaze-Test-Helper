@@ -3,10 +3,11 @@ import re
 from os import path
 import subprocess
 
-google3Location = '/Users/personal/code/python/scripts'
+
+google3Location = path.curdir
 
 parentFolderPaths = [
-    '/Users/personal/code/python/scripts/src/test/testing'
+    path.join(google3Location, 'src/test/testing')
 ]
 
 
